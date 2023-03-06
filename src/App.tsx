@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Dependencies
+import { Route, Routes } from 'react-router-dom';
 
-function App() {
+// Layouts
+import { DefaultLayout } from './Components/Layout/Default';
+
+// Pages
+import { CreateItems } from './Pages/CreateItems';
+import { CreateBundle } from './Pages/CreateBundle';
+import { ReleasedBundles } from './Pages/ReleasedBundles';
+
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<DefaultLayout/>}>
+        <Route index element={<CreateItems/>}/>
+        <Route path="bundles" element={<CreateBundle/>}/>
+        <Route path="bundles/released" element={<ReleasedBundles/>}/>
+        <Route path="*" element={<CreateItems/>}/>
+      </Route>
+    </Routes>
   );
 }
-
-export default App;
